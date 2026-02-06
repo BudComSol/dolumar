@@ -55,6 +55,7 @@ div.guide blockquote.bubble
 	bottom: 180px;
 	right: 30px;
 	width: 250px;
+	max-width: 80vw;
 	border: 0px none black;
 }
 
@@ -97,6 +98,9 @@ div.guide div.icon img
 	background:-moz-linear-gradient(top, #f5dc65, #f5e494);
 	background:-o-linear-gradient(top, #f5dc65, #f5e494);
 	background:linear-gradient(top, #f5dc65, #f5e494);
+	
+	word-wrap: break-word;
+	overflow-wrap: break-word;
 	
 }
 
