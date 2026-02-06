@@ -8,8 +8,8 @@
     "airbrake/phpbrake": "^0.7.0",
     "openid/php-openid" : "dev-master",
 
-    "pear-pear/MDB2_Driver_mysqli": "1.5.0-beta4",
-    "pear-pear/MDB2":               "2.5.0-beta5 as 2.5.0",
+    "pear-pear/mdb2_driver_mysqli": "1.5.0-beta4",
+    "pear-pear/mdb2":               "2.5.0-beta5 as 2.5.0",
     "vlucas/phpdotenv": "^5.6"
   },
 
