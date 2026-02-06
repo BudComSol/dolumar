@@ -61,11 +61,21 @@ class Neuron_DB_MySQL extends Neuron_DB_Database
 		return $this->connection;
 	}
 
+	/**
+	 * Executes multiple SQL statements separated by semicolons.
+	 * 
+	 * Note: This is a simplified implementation that splits on semicolons.
+	 * It may not correctly handle semicolons within string literals or comments.
+	 * Use with caution and prefer individual query() calls for complex statements.
+	 * 
+	 * @param string $sSQL Multiple SQL statements separated by semicolons
+	 */
 	public function multiQuery($sSQL)
 	{
 		$this->connect();
 		// PDO doesn't support multi_query in the same way as MySQLi
 		// Split queries by semicolon and execute them one by one
+		// Note: This simple split may fail with semicolons in string literals
 		$queries = array_filter(array_map('trim', explode(';', $sSQL)));
 		foreach ($queries as $query) {
 			if (!empty($query)) {
@@ -124,6 +134,16 @@ class Neuron_DB_MySQL extends Neuron_DB_Database
 		}
 	}
 
+	/**
+	 * Escapes a string for SQL queries.
+	 * 
+	 * @deprecated This method is provided for backward compatibility only.
+	 * New code should use prepared statements with parameter binding instead.
+	 * 
+	 * @param string $txt The text to escape
+	 * @return string The escaped text
+	 * @throws Neuron_Core_Error If an array is passed
+	 */
 	public function escape ($txt)
 	{
 		if (is_array ($txt))
@@ -141,14 +161,21 @@ class Neuron_DB_MySQL extends Neuron_DB_Database
 
 	public function fromUnixtime ($timestamp)
 	{
-		$query = $this->query ("SELECT FROM_UNIXTIME('{$timestamp}') AS datum");
+		// Sanitize timestamp to prevent SQL injection
+		$timestamp = intval($timestamp);
+		$query = $this->query ("SELECT FROM_UNIXTIME({$timestamp}) AS datum");
 		return $query[0]['datum'];
 	}
 
 	public function toUnixtime ($date)
 	{
-		$query = $this->query ("SELECT UNIX_TIMESTAMP('{$date}') AS datum");
-		return $query[0]['datum'];
+		// Use prepared statement to prevent SQL injection
+		$this->connect();
+		$stmt = $this->connection->prepare("SELECT UNIX_TIMESTAMP(?) AS datum");
+		$stmt->execute([$date]);
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+		$stmt->closeCursor();
+		return $result['datum'];
 	}
 }
 ?>

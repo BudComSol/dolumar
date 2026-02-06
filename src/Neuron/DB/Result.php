@@ -33,6 +33,16 @@ class Neuron_DB_Result implements Iterator, ArrayAccess, Countable
 	private $cache;
 	private $allRows;
 
+	/**
+	 * Creates a new Result wrapper around a PDOStatement.
+	 * 
+	 * Note: This implementation fetches all rows into memory immediately.
+	 * For large result sets, this may cause high memory consumption.
+	 * This is done to maintain compatibility with the original MySQLi-based
+	 * implementation that supported random access via data_seek().
+	 * 
+	 * @param PDOStatement $result The PDOStatement to wrap
+	 */
 	public function __construct ($result)
 	{
 		$this->result = $result;
