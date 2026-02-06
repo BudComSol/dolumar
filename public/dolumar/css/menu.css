@@ -118,6 +118,8 @@
 	padding-top: 11px;
 	
 	width: 150px;
+	max-width: 180px;
+	min-width: 120px;
 	height: 5px;
 }
 
@@ -144,12 +146,16 @@
 {
 	clear: both;
 	width: 150px;
+	max-width: 180px;
+	min-width: 120px;
 }
 
 #menu li ul li
 {
 	display: block;
 	width: 150px;
+	max-width: 180px;
+	min-width: 120px;
 }
 
 #menu li ul li.title a
@@ -161,6 +167,9 @@
 {
 	color: white;
 	width: 150px;
+	max-width: 180px;
+	min-width: 120px;
+	word-wrap: break-word;
 }
 
 #menu li ul li a:hover
