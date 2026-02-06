@@ -40,24 +40,25 @@ These advisories have been added to the `audit.ignore` configuration to allow in
 
 ### PEAR Package Dependencies
 
-The `catlabinteractive/dolumar-engine` package requires PEAR packages that are no longer directly supported by Composer 2.x:
+The `catlabinteractive/dolumar-engine` package previously required PEAR packages that are no longer directly supported by Composer 2.x:
 - `pear-pear/MDB2`
 - `pear-pear/MDB2_Driver_mysqli`
 
-#### Recommended Solutions:
+#### Solution Implemented: PDO Migration
 
-1. **Option 1: Use dolumar-engine v1.0.6** (if available)
-   - Version 1.0.6 uses `silverorange/mdb2` and `bondas83/mdb2_driver_mysqli` as alternatives
-   - May require adjusting `minimum-stability` to `beta`
+The database layer has been migrated from MDB2/MySQLi to PDO:
+- Created local `Neuron_DB_Database`, `Neuron_DB_MySQL`, and `Neuron_DB_Result` classes in `src/Neuron/DB/`
+- These classes override the engine's MySQLi-based implementation
+- All database operations now use PDO with proper error handling
+- Removed MDB2 dependencies from composer.json
+- Added `ext-pdo` and `ext-pdo_mysql` as requirements
 
-2. **Option 2: Manual PEAR Package Installation**
-   - Install PEAR packages manually in the `pear/` directory
-   - Configure autoloader to include PEAR classes
-
-3. **Option 3: Fork and Update dolumar-engine**
-   - Fork the dolumar-engine repository
-   - Update it to use modern alternatives to MDB2 (e.g., PDO)
-   - Update the composer requirement to point to your fork
+Benefits of PDO:
+- Native PHP extension (no external dependencies)
+- Better security with prepared statements support
+- Consistent interface across different database types
+- Better exception handling
+- PHP 8.x compatibility
 
 ### Other Legacy Dependencies
 
@@ -96,7 +97,7 @@ Since PEAR repositories are not supported in Composer 2.x, you may need to:
 ## Testing
 
 After upgrading, test the following:
-- Database connectivity (MDB2 usage)
+- Database connectivity (PDO-based database layer)
 - Email functionality (PHPMailer)
 - Environment variable loading (phpdotenv)
 - Error reporting (Airbrake)
@@ -104,7 +105,7 @@ After upgrading, test the following:
 ## Future Improvements
 
 Consider these modernization steps for long-term maintenance:
-1. **CRITICAL**: Migrate from MDB2 to PDO for database operations
+1. **COMPLETED**: Migrated from MDB2 to PDO for database operations
 2. **CRITICAL**: Upgrade PHPMailer to v6.x+ (requires updating dolumar-engine)
 3. Update Airbrake to latest version if newer features are needed
 4. Replace Zend Framework components with modern alternatives (Symfony, Laravel components)
