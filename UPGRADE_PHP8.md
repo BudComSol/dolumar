@@ -50,10 +50,15 @@ The `catlabinteractive/dolumar-engine` package requires PEAR packages that are n
 ### Other Legacy Dependencies
 
 - **phpmailer**: Currently using v5.2.x which has known security vulnerabilities
-  - Consider upgrading to v6.x+ if possible
-- **phpdotenv**: Currently using v2.4.x
-  - v5.x is available and compatible with PHP 8.x
-  - May require updating usage from `$dotenv->load()` to `$dotenv->safeLoad()`
+  - The dolumar-engine package requires this version
+  - Consider forking dolumar-engine and upgrading to phpmailer v6.x+ if possible
+- **phpdotenv**: Updated from v2.4.x to v5.6+
+  - v5.x is compatible with PHP 8.x
+  - **Breaking change**: API has changed from `new Dotenv\Dotenv()` and `load()` to `Dotenv\Dotenv::createImmutable()` and `safeLoad()`
+  - bootstrap.php has been updated accordingly
+- **airbrake/phpbrake**: Updated from v0.2.0 to v0.7.0+
+  - v0.7+ is compatible with PHP 8.x
+  - No API changes required in bootstrap.php
 
 ## Installation Instructions
 
