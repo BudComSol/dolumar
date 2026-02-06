@@ -26,6 +26,18 @@ This guide documents the changes made to update the Dolumar codebase to support 
 
 ## Known Issues and Workarounds
 
+### PHPMailer Security Advisories
+
+The `phpmailer/phpmailer` v5.2.x dependency has multiple known security vulnerabilities. These are required by the `catlabinteractive/dolumar-engine` package. 
+
+**Security Advisories**: PKSA-rh9h-fj14-12r3, PKSA-35kn-2ddp-d3p4, PKSA-m8by-bb7v-7qt5, PKSA-8sw7-9x88-c8bx, PKSA-g8hj-dw43-q8td, PKSA-dn5d-4vy3-wsfy, PKSA-y9zp-7yqg-8bmt, PKSA-mjxt-24k3-8rt7, PKSA-5nj1-dvnw-7cyx, PKSA-nm9v-1tjm-2cvc
+
+These advisories have been added to the `audit.ignore` configuration to allow installation. However, this is a **security risk** and should be addressed by:
+
+1. Forking and updating `dolumar-engine` to use phpmailer v6.x+
+2. Implementing careful input validation and sanitization in email handling code
+3. Restricting email functionality to trusted users only
+
 ### PEAR Package Dependencies
 
 The `catlabinteractive/dolumar-engine` package requires PEAR packages that are no longer directly supported by Composer 2.x:

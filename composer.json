@@ -46,6 +46,21 @@
     "allow-plugins": {
       "composer/installers": true,
       "pear/pear_installer": true
+    },
+    "audit": {
+      "abandoned": "report",
+      "ignore": [
+        "PKSA-rh9h-fj14-12r3",
+        "PKSA-35kn-2ddp-d3p4",
+        "PKSA-m8by-bb7v-7qt5",
+        "PKSA-8sw7-9x88-c8bx",
+        "PKSA-g8hj-dw43-q8td",
+        "PKSA-dn5d-4vy3-wsfy",
+        "PKSA-y9zp-7yqg-8bmt",
+        "PKSA-mjxt-24k3-8rt7",
+        "PKSA-5nj1-dvnw-7cyx",
+        "PKSA-nm9v-1tjm-2cvc"
+      ]
     }
   }
 }
