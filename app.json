@@ -1,24 +1,23 @@
 {
   "name": "Dolumar browser game",
   "description": "Create your own powerful kingdom in this vast, colorful, virtual world of Dolumar.",
-  "repository": "https://github.com/CatLabInteractive/dolumar",
-  "logo": "http://master.dolumar.be/images/logos/logo-64x64.jpg",
+  "repository": "https://github.com/BudComSol/dolumar",
+  "logo": "https://www.dolumar.com/images/logos/logo-64x64.jpg",
   "keywords": ["php", "pbbg", "game", "browsergame"],
   "website": "https://www.dolumar.com/",
   "success_url": "/",
+  "stack": "heroku-24",
   "scripts": {
     "postdeploy": "sh tools/setup.sh"
   },
   "formation": {
     "web": {
-      "quantity": 1,
-      "size": "free"
+      "quantity": 1
     }
   },
   "addons": [
-    "cleardb",
+    "jawsdb-maria",
     "memcachier",
-    "mailgun",
-    "airbrake"
+    "mailgun"
   ]
 }
