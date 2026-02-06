@@ -28,15 +28,43 @@ This guide documents the changes made to update the Dolumar codebase to support 
 
 ### PHPMailer Security Advisories
 
-The `phpmailer/phpmailer` v5.2.x dependency has multiple known security vulnerabilities. These are required by the `catlabinteractive/dolumar-engine` package. 
+**UPDATE (2026-02-06)**: ✅ **RESOLVED** - PHPMailer has been upgraded to v6.x!
 
-**Security Advisories**: PKSA-rh9h-fj14-12r3, PKSA-35kn-2ddp-d3p4, PKSA-m8by-bb7v-7qt5, PKSA-8sw7-9x88-c8bx, PKSA-g8hj-dw43-q8td, PKSA-dn5d-4vy3-wsfy, PKSA-y9zp-7yqg-8bmt, PKSA-mjxt-24k3-8rt7, PKSA-5nj1-dvnw-7cyx, PKSA-nm9v-1tjm-2cvc
+The project has been successfully updated to use PHPMailer v6.12.0, resolving all known security vulnerabilities that were present in v5.2.x.
 
-These advisories have been added to the `audit.ignore` configuration to allow installation. However, this is a **security risk** and should be addressed by:
+**Previously Affected Security Advisories (Now Fixed)**: PKSA-rh9h-fj14-12r3, PKSA-35kn-2ddp-d3p4, PKSA-m8by-bb7v-7qt5, PKSA-8sw7-9x88-c8bx, PKSA-g8hj-dw43-q8td, PKSA-dn5d-4vy3-wsfy, PKSA-y9zp-7yqg-8bmt, PKSA-mjxt-24k3-8rt7, PKSA-5nj1-dvnw-7cyx, PKSA-nm9v-1tjm-2cvc
 
-1. Forking and updating `dolumar-engine` to use phpmailer v6.x+
-2. Implementing careful input validation and sanitization in email handling code
-3. Restricting email functionality to trusted users only
+#### Solution Implemented: PHPMailer v6.x Upgrade
+
+The upgrade process included:
+
+1. **Created Local dolumar-engine Package**
+   - Cloned `dolumar-engine` to `packages/dolumar-engine/`
+   - Updated composer.json to use local path repository
+
+2. **Updated PHPMailer Dependency**
+   - Changed from `phpmailer/phpmailer: ~5.2` to `^6.9` in dolumar-engine
+   - Successfully installed PHPMailer v6.12.0
+
+3. **Modernized Email Code** (`dolumar-engine/src/connect.php`)
+   - Updated to use namespaced class: `\PHPMailer\PHPMailer\PHPMailer`
+   - Changed deprecated methods: `IsSMTP()` → `isSMTP()`, `AddAddress()` → `addAddress()`
+   - Updated `From`/`FromName` properties to use `setFrom()` method
+   - Added proper exception handling for `\PHPMailer\PHPMailer\Exception`
+
+4. **Removed Incompatible Dependencies**
+   - Removed MDB2 dependencies (replaced by PDO in main codebase)
+   - Removed ivan-novakov/php-openid-connect-client (PHP 5-7 only)
+
+5. **Updated Repository Configuration**
+   - Changed repository URL from SSH to HTTPS format
+   - Removed security advisories from `audit.ignore` configuration
+
+Benefits of PHPMailer v6.x:
+- **Security**: Fixes all 10 known security vulnerabilities from v5.2.x
+- **Modern PHP**: Compatible with PHP 8.x namespaces and features
+- **Better Error Handling**: Improved exception handling and debugging
+- **Active Maintenance**: Continues to receive security updates
 
 ### PEAR Package Dependencies
 
@@ -62,9 +90,7 @@ Benefits of PDO:
 
 ### Other Legacy Dependencies
 
-- **phpmailer**: Currently using v5.2.x which has known security vulnerabilities
-  - The dolumar-engine package requires this version
-  - Consider forking dolumar-engine and upgrading to phpmailer v6.x+ if possible
+- **phpmailer**: ✅ **UPGRADED to v6.12.0** - All security vulnerabilities resolved
 - **phpdotenv**: Updated from v2.4.x to v5.6+
   - v5.x is compatible with PHP 8.x
   - **Breaking change**: API has changed from `new Dotenv\Dotenv()` and `load()` to `Dotenv\Dotenv::createImmutable()` and `safeLoad()`
@@ -106,7 +132,7 @@ After upgrading, test the following:
 
 Consider these modernization steps for long-term maintenance:
 1. **COMPLETED**: Migrated from MDB2 to PDO for database operations
-2. **CRITICAL**: Upgrade PHPMailer to v6.x+ (requires updating dolumar-engine)
+2. **COMPLETED**: Upgraded PHPMailer to v6.x (resolves all security vulnerabilities)
 3. Update Airbrake to latest version if newer features are needed
 4. Replace Zend Framework components with modern alternatives (Symfony, Laravel components)
 5. Add proper unit tests

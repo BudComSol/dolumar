@@ -1,66 +1,67 @@
 # Security Notice
 
-## Known Security Issues
+## Security Status
 
-### PHPMailer v5.2.x Vulnerabilities
+### PHPMailer Updated to v6.x ✅
 
-This project currently uses PHPMailer v5.2.x (via the `catlabinteractive/dolumar-engine` dependency), which has **multiple known security vulnerabilities**.
+This project has been updated to use PHPMailer v6.12.0 (or later), which resolves all known security vulnerabilities that were present in PHPMailer v5.2.x.
 
-**Affected Security Advisories:**
-- PKSA-rh9h-fj14-12r3
-- PKSA-35kn-2ddp-d3p4
-- PKSA-m8by-bb7v-7qt5
-- PKSA-8sw7-9x88-c8bx
-- PKSA-g8hj-dw43-q8td
-- PKSA-dn5d-4vy3-wsfy
-- PKSA-y9zp-7yqg-8bmt
-- PKSA-mjxt-24k3-8rt7
-- PKSA-5nj1-dvnw-7cyx
-- PKSA-nm9v-1tjm-2cvc
+**Previously Affected Security Advisories (Now Resolved):**
+- PKSA-rh9h-fj14-12r3 ✅
+- PKSA-35kn-2ddp-d3p4 ✅
+- PKSA-m8by-bb7v-7qt5 ✅
+- PKSA-8sw7-9x88-c8bx ✅
+- PKSA-g8hj-dw43-q8td ✅
+- PKSA-dn5d-4vy3-wsfy ✅
+- PKSA-y9zp-7yqg-8bmt ✅
+- PKSA-mjxt-24k3-8rt7 ✅
+- PKSA-5nj1-dvnw-7cyx ✅
+- PKSA-nm9v-1tjm-2cvc ✅
 
-### Why These Vulnerabilities Are Present
+### What Changed
 
-The `catlabinteractive/dolumar-engine` package requires PHPMailer v5.2.x. Upgrading PHPMailer to v6.x+ would require updating the dolumar-engine package, which is maintained separately.
+The `catlabinteractive/dolumar-engine` dependency has been updated to use PHPMailer v6.x with the following changes:
 
-### Mitigation Strategies
+1. **Updated PHPMailer**: Changed from `~5.2` to `^6.9` in dolumar-engine's composer.json
+2. **Code Modernization**: Updated email sending code to use PHPMailer v6 namespaced classes and methods
+3. **Removed Legacy Dependencies**: Removed MDB2 dependencies in favor of PDO (already implemented in main codebase)
+4. **Local Package**: dolumar-engine is now included as a local package in `packages/dolumar-engine` with all necessary updates
 
-Until the dolumar-engine package can be updated to use PHPMailer v6.x+, consider these mitigations:
+### Implementation Details
 
-1. **Restrict Email Functionality**
-   - Limit email sending to trusted administrators only
-   - Implement strict input validation for all email fields
-   - Sanitize all user input before passing to PHPMailer
+The dolumar-engine package now:
+- Uses `\PHPMailer\PHPMailer\PHPMailer` with proper namespace imports
+- Employs modern PHPMailer v6 method names (`isSMTP()`, `addAddress()`, `setFrom()`)
+- Handles exceptions properly with `\PHPMailer\PHPMailer\Exception`
+- Maintains backward compatibility with existing email configuration
 
-2. **Network Segmentation**
-   - Run the application in a segmented network
-   - Restrict outbound SMTP connections to known mail servers only
+## Current Security Posture
 
-3. **Monitor Email Activity**
+✅ **No Known Security Vulnerabilities**: As of the last update (2026-02-06), composer audit reports no security vulnerabilities.
+
+## Best Practices
+
+While the security vulnerabilities have been addressed, continue to follow these email security best practices:
+
+1. **Input Validation**
+   - Validate all email addresses before use
+   - Sanitize user input in email subjects and bodies
+   - Implement rate limiting for email sending
+
+2. **Configuration Security**
+   - Store SMTP credentials in environment variables (`.env` file)
+   - Use TLS/SSL for SMTP connections
+   - Limit email functionality to authenticated users
+
+3. **Monitoring**
    - Log all email sending operations
    - Alert on unusual email patterns or volumes
    - Regularly review email logs for suspicious activity
 
-4. **Regular Security Audits**
-   - Perform regular security audits of email handling code
-   - Keep track of new security advisories
-   - Have an incident response plan ready
-
-### Recommended Actions
-
-**For Production Environments:**
-1. Fork the `catlabinteractive/dolumar-engine` repository
-2. Update it to use PHPMailer v6.x+
-3. Test thoroughly
-4. Update your composer.json to use your forked version
-
-**For Development/Testing:**
-- Accept the risk but ensure no sensitive data is processed
-- Use a development-only SMTP server
-- Do not expose to the internet
-
-### Composer Configuration
-
-The `audit.ignore` configuration in composer.json has been configured to suppress these warnings during `composer install/update`. This is necessary to allow installation but **does not fix the underlying security issues**.
+4. **Regular Updates**
+   - Keep PHPMailer updated to the latest version
+   - Run `composer audit` regularly to check for new vulnerabilities
+   - Subscribe to security advisories for dependencies
 
 ## Reporting Security Issues
 
