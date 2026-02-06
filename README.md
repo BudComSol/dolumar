@@ -11,7 +11,7 @@ Play now at http://www.dolumar.com/
 ## Quick start
 First fork the project (so that you can make changes), then click the button below:
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://www.heroku.com/deploy?template=https://github.com/BudComSol/dolumar)
 
 This will setup a Heroku project with all required extensions installed.
 
