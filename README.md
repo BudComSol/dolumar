@@ -1,6 +1,13 @@
 # Dolumar
 Play now at http://www.dolumar.com/
 
+## Requirements
+- PHP 8.1 or higher
+- MySQL/MariaDB database
+- Composer 2.x (see UPGRADE_PHP8.md for details)
+- Memcached extension
+- Required PHP extensions: bcmath, gd, mbstring, memcached
+
 ## Quick start
 First fork the project (so that you can make changes), then click the button below:
 
@@ -9,13 +16,18 @@ First fork the project (so that you can make changes), then click the button bel
 This will setup a Heroku project with all required extensions installed.
 
 ## Setup
-Dolumar has a few requirements, listed in composer.json. We have optimized Dolumar so that it can easily run on
-a free heroku daemon, as long as you don't have too much players. It is, however, a php web application, so you 
-can easily run it on any other server.
+Dolumar has a few requirements, listed in composer.json. It requires PHP 8.1+ and Composer 2.x.
+
+**Note**: Due to Composer 2.x no longer supporting PEAR repositories, special care must be taken during installation. Please see [UPGRADE_PHP8.md](UPGRADE_PHP8.md) for detailed instructions.
+
+We have optimized Dolumar so that it can easily run on a free heroku daemon, as long as you don't have too much players. It is, however, a php web application, so you can easily run it on any other server.
 
 ## Local setup
 For a local (development) setup, make sure you have composer installed.
-Simply run composer.json to install all dependencies.
+
+**Important**: See [UPGRADE_PHP8.md](UPGRADE_PHP8.md) for installation instructions due to PEAR package compatibility issues with Composer 2.x.
+
+Simply run `composer install` to install all dependencies (may require Composer 1.x workaround).
 
 ## Set up SMTP server
 You need to set SMTP credentials in order to get the email validation working. Following instructions will get it up and 
