@@ -30,7 +30,6 @@ class Neuron_DB_Result implements Iterator, ArrayAccess, Countable
 	private $rowId;
 	private $current;
 	
-	private $cache;
 	private $allRows;
 
 	/**
@@ -76,13 +75,8 @@ class Neuron_DB_Result implements Iterator, ArrayAccess, Countable
 		// Only numeric values
 		$offset = intval ($offset);
 	
-		// Cache these calls
-		if (!isset ($this->cache[$offset]))
-		{
-			$this->cache[$offset] = isset($this->allRows[$offset]) ? $this->allRows[$offset] : null;
-		}
-		
-		return $this->cache[$offset];
+		// Direct access to allRows array (already in memory, O(1) access)
+		return isset($this->allRows[$offset]) ? $this->allRows[$offset] : null;
 	}
 	
 	public function offsetUnset($offset): void

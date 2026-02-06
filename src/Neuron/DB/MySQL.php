@@ -39,6 +39,11 @@ class Neuron_DB_MySQL extends Neuron_DB_Database
 	{
 		if (!isset ($this->connection))
 		{
+			// Validate database configuration constants
+			if (!defined('DB_SERVER') || !defined('DB_USERNAME') || !defined('DB_PASSWORD') || !defined('DB_DATABASE')) {
+				throw new Exception('Database configuration constants are not defined');
+			}
+			
 			try
 			{
 				$dsn = 'mysql:host=' . DB_SERVER . ';dbname=' . DB_DATABASE . ';charset=utf8mb4';
