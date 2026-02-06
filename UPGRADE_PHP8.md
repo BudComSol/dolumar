@@ -104,12 +104,12 @@ After upgrading, test the following:
 ## Future Improvements
 
 Consider these modernization steps for long-term maintenance:
-1. Migrate from MDB2 to PDO for database operations
-2. Update PHPMailer to v6.x+
-3. Update phpdotenv to v5.x
-4. Update Airbrake to latest version
-5. Replace Zend Framework components with modern alternatives
-6. Add proper unit tests
+1. **CRITICAL**: Migrate from MDB2 to PDO for database operations
+2. **CRITICAL**: Upgrade PHPMailer to v6.x+ (requires updating dolumar-engine)
+3. Update Airbrake to latest version if newer features are needed
+4. Replace Zend Framework components with modern alternatives (Symfony, Laravel components)
+5. Add proper unit tests
+6. Consider migrating from monolithic to service-oriented architecture
 
 ## Support
 
