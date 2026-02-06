@@ -1,0 +1,27 @@
+{
+  "name": "catlabinteractive/dolumar-engine",
+  "license" : "GPL-3.0",
+
+  "require": {
+    "phpmailer/phpmailer": "^6.9",
+    "openid/php-openid" : "dev-master",
+
+    "ext-memcached" : "*",
+    "ext-mbstring": "*",
+    "ext-gd": "*",
+    "ext-bcmath" : "*"
+  },
+
+  "repositories": [
+    {
+      "type": "vcs",
+      "url":  "https://github.com/CatLabInteractive/php-openid.git"
+    }
+  ],
+
+  "autoload": {
+    "classmap" : [
+      "src"
+    ]
+  }
+}

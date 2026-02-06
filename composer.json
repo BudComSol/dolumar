@@ -4,7 +4,7 @@
 
   "require": {
 
-	"catlabinteractive/dolumar-engine" : "~1.0.5",
+	"catlabinteractive/dolumar-engine" : "@dev",
     "airbrake/phpbrake": "^0.7.0",
     "openid/php-openid" : "dev-master",
     "vlucas/phpdotenv": "^5.6",
@@ -18,10 +18,12 @@
 
   "repositories": [
     {
-      "type": "vcs",
-      "url":  "https://github.com/CatLabInteractive/dolumar-engine.git"
+      "type": "path",
+      "url": "./packages/dolumar-engine",
+      "options": {
+        "symlink": false
+      }
     },
-
     {
       "type": "vcs",
       "url":  "https://github.com/CatLabInteractive/php-openid.git"
@@ -46,19 +48,7 @@
       "composer/installers": true
     },
     "audit": {
-      "abandoned": "report",
-      "ignore": [
-        "PKSA-rh9h-fj14-12r3",
-        "PKSA-35kn-2ddp-d3p4",
-        "PKSA-m8by-bb7v-7qt5",
-        "PKSA-8sw7-9x88-c8bx",
-        "PKSA-g8hj-dw43-q8td",
-        "PKSA-dn5d-4vy3-wsfy",
-        "PKSA-y9zp-7yqg-8bmt",
-        "PKSA-mjxt-24k3-8rt7",
-        "PKSA-5nj1-dvnw-7cyx",
-        "PKSA-nm9v-1tjm-2cvc"
-      ]
+      "abandoned": "report"
     }
   }
 }
