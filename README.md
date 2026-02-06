@@ -8,19 +8,12 @@ Play now at http://www.dolumar.com/
 - Memcached extension
 - Required PHP extensions: bcmath, gd, mbstring, memcached
 
-## Quick start
-First fork the project (so that you can make changes), then click the button below:
-
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://www.heroku.com/deploy?template=https://github.com/BudComSol/dolumar)
-
-This will setup a Heroku project with all required extensions installed.
-
 ## Setup
 Dolumar has a few requirements, listed in composer.json. It requires PHP 8.1+ and Composer 2.x.
 
 **Note**: Due to Composer 2.x no longer supporting PEAR repositories, special care must be taken during installation. Please see [UPGRADE_PHP8.md](UPGRADE_PHP8.md) for detailed instructions.
 
-We have optimized Dolumar so that it can easily run on a free heroku daemon, as long as you don't have too much players. It is, however, a php web application, so you can easily run it on any other server.
+Dolumar is a PHP web application that can be run on any server with the required dependencies.
 
 ## Local setup
 For a local (development) setup, make sure you have composer installed.
@@ -30,15 +23,13 @@ For a local (development) setup, make sure you have composer installed.
 Simply run `composer install` to install all dependencies (may require Composer 1.x workaround).
 
 ## Set up SMTP server
-You need to set SMTP credentials in order to get the email validation working. Following instructions will get it up and 
-running with mandrill, but you can use any SMTP server. 
+You need to set SMTP credentials in order to get the email validation working. You can use any SMTP server by setting the following environment variables:
 
-In heroku, set:
-* EMAIL_SMTP_SERVER: smtp.mandrillapp.com
+* EMAIL_SMTP_SERVER: your SMTP server (e.g., smtp.example.com)
 * EMAIL_SMTP_SECURE: tls
 * EMAIL_SMTP_PORT: 587
-* EMAIL_SMTP_USERNAME: abc
-* EMAIL_SMTP_PASSWORD: abc
+* EMAIL_SMTP_USERNAME: your username
+* EMAIL_SMTP_PASSWORD: your password
 
 Optionally, you can also set:
 * AIRBRAKE_TOKEN (airbrake api token, to gather errors)
