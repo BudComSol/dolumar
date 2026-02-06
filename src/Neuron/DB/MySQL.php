@@ -41,7 +41,7 @@ class Neuron_DB_MySQL extends Neuron_DB_Database
 		{
 			try
 			{
-				$dsn = 'mysql:host=' . DB_SERVER . ';dbname=' . DB_DATABASE . ';charset=utf8';
+				$dsn = 'mysql:host=' . DB_SERVER . ';dbname=' . DB_DATABASE . ';charset=utf8mb4';
 				$this->connection = new PDO($dsn, DB_USERNAME, DB_PASSWORD, [
 					PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
 					PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
@@ -161,10 +161,13 @@ class Neuron_DB_MySQL extends Neuron_DB_Database
 
 	public function fromUnixtime ($timestamp)
 	{
-		// Sanitize timestamp to prevent SQL injection
-		$timestamp = intval($timestamp);
-		$query = $this->query ("SELECT FROM_UNIXTIME({$timestamp}) AS datum");
-		return $query[0]['datum'];
+		// Use prepared statement for consistency and best practices
+		$this->connect();
+		$stmt = $this->connection->prepare("SELECT FROM_UNIXTIME(?) AS datum");
+		$stmt->execute([intval($timestamp)]);
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+		$stmt->closeCursor();
+		return $result['datum'];
 	}
 
 	public function toUnixtime ($date)

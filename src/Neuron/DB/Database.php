@@ -42,7 +42,7 @@ abstract class Neuron_DB_Database
 		if (!isset ($in[$id]))
 		{
 			$in[$id] = new Neuron_DB_MySQL ();
-			$in[$id]->query ("SET names 'utf8'");
+			$in[$id]->query ("SET names 'utf8mb4'");
 			$in[$id]->query ("SET time_zone = '+00:00'");
 		}
 		
