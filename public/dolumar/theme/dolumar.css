@@ -44,8 +44,6 @@
 .dolumar_content_inner1
 {
 	background: url(dolumar/center_right.png) repeat-y top right;
-	padding-left: 42px;
-	padding-right: 37px;
 	padding-left: min(42px, 5vw);
 	padding-right: min(37px, 5vw);
 
@@ -129,7 +127,6 @@
 	font-weight: bold;
 	font-family: Verdana;
 	overflow: hidden;
-	padding-right: 30px;
 	padding-right: min(30px, 10%);
 	vertical-align: middle;
 	margin-top: 16px;

@@ -11,19 +11,18 @@ body
 
 div#countdown
 {
-	width: 250px;
-	max-width: 90%;
-	margin-left: -125px;
+	width: min(250px, 90%);
 	left: 50%;
 	position: absolute;
-	margin-top: -120px;
 	top: 50%;
+	transform: translate(-50%, -50%);
+	margin-top: -60px;
 }
 
 @media screen and (max-width: 480px) {
 	div#countdown {
 		width: 90%;
-		margin-left: -45%;
+		margin-top: -80px;
 	}
 }
 
