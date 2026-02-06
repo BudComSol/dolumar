@@ -126,6 +126,7 @@ a:hover
 	width: 100%;
 	margin-bottom: 3px;
 	border-collapse: separate;
+	table-layout: auto;
 }
 
 .dolumar_content_inner2 table th
@@ -138,6 +139,8 @@ a:hover
 {
 	padding: 1px 2px;
 	text-align: left;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
 }
 
 .dolumar_content_inner2 table td.icon
@@ -155,6 +158,8 @@ a:hover
 .dolumar_content_inner2 table th.date
 {
 	width: 110px;
+	min-width: 80px;
+	max-width: 150px;
 	text-align: center;
 }
 
@@ -162,6 +167,8 @@ a:hover
 .dolumar_content_inner2 table th.distance-long
 {
 	width: 100px;
+	min-width: 70px;
+	max-width: 120px;
 	text-align: right;
 }
 
@@ -169,6 +176,8 @@ a:hover
 .dolumar_content_inner2 table th.player
 {
 	width: 110px;
+	min-width: 80px;
+	max-width: 150px;
 	text-align: center;
 }
 
@@ -176,6 +185,8 @@ a:hover
 .dolumar_content_inner2 table th.village-name
 {
 	width: 135px;
+	min-width: 100px;
+	max-width: 180px;
 	text-align: left;
 }
 
@@ -183,6 +194,8 @@ a:hover
 .dolumar_content_inner2 table th.networth
 {
 	width: 75px;
+	min-width: 60px;
+	max-width: 100px;
 	text-align: center;
 }
 

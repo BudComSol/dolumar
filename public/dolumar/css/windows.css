@@ -16,6 +16,7 @@
 .squads div.equipment select
 {
 	width: 175px;
+	max-width: 100%;
 }
 
 /* Squad overview */
@@ -92,6 +93,7 @@ div.battle select.specialAction
 	float: left;
 	clear: none;
 	width: 300px;
+	max-width: 100%;
 }
 
 div.battle img
@@ -363,6 +365,7 @@ div.clan form.membermanager select
 div.clan textarea
 {
 	width: 215px;
+	max-width: 100%;
 	height: 75px;
 }
 
@@ -646,6 +649,7 @@ form.searchbox select
 {
 	float: left;
 	width: 150px;
+	max-width: 100%;
 }
 
 form.searchbox input.checkbox
@@ -697,12 +701,14 @@ ul.bonusbuildings li div.description
 {
 	float: left;
 	width: 235px;
+	max-width: calc(100% - 100px);
 	overflow: hidden;
 }
 
 form#selectrace select
 {
 	width: 200px;
+	max-width: 100%;
 }
 
 .dialog table.table_window div.guiwindow table.logbook td.actions
