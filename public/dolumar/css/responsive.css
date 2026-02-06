@@ -1,0 +1,407 @@
+/*
+ * Responsive CSS for Dolumar
+ * Makes the game fully responsive across all devices
+ */
+
+/* Global responsive resets */
+* {
+	box-sizing: border-box;
+}
+
+/* Base responsive improvements */
+body {
+	min-width: 320px;
+}
+
+/* Container max-widths for content */
+#container {
+	max-width: 100%;
+	width: 100%;
+}
+
+#content {
+	max-width: 100%;
+	width: 100%;
+}
+
+/* Responsive tables */
+.dolumar_content_inner2 table {
+	width: 100%;
+	table-layout: auto;
+}
+
+.dolumar_content_inner2 table td,
+.dolumar_content_inner2 table th {
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+}
+
+/* Responsive images */
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+/* Responsive forms */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea,
+select {
+	max-width: 100%;
+	width: 100%;
+}
+
+/* Dialog windows responsive */
+.dialog {
+	max-width: 95vw !important;
+	max-height: 95vh !important;
+}
+
+.dolumar_content_inner2 {
+	max-height: 80vh;
+	overflow: auto;
+}
+
+/* ==================================================
+   MEDIA QUERIES - Mobile First Approach
+   ================================================== */
+
+/* Extra Small Devices (phones, 320px - 480px) */
+@media screen and (max-width: 480px) {
+	/* Menu adjustments */
+	#menu ul.left,
+	#menu ul.right {
+		font-size: 11px;
+	}
+	
+	#menu li {
+		margin-right: 2px;
+		margin-left: 2px;
+	}
+	
+	#menu li div {
+		width: 120px;
+	}
+	
+	#menu ul.right li div {
+		margin-left: -90px;
+	}
+	
+	#menu li ul li,
+	#menu li ul li a {
+		width: 120px;
+	}
+	
+	/* Center menu logo smaller */
+	#menu .center {
+		width: 120px;
+		height: 40px;
+		margin-left: -60px;
+		background-size: contain;
+	}
+	
+	/* Dialog windows */
+	.dialog {
+		max-width: 98vw !important;
+	}
+	
+	.dolumar_content_inner1 {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+	
+	.dialog.small-border .dolumar_content_inner1 {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	
+	/* Tables - make scrollable */
+	.dolumar_content_inner2 {
+		overflow-x: auto;
+	}
+	
+	.dolumar_content_inner2 table {
+		min-width: 100%;
+	}
+	
+	/* Stack table columns on very small screens */
+	.dolumar_content_inner2 table td.date,
+	.dolumar_content_inner2 table th.date {
+		width: auto;
+		min-width: 80px;
+	}
+	
+	.dolumar_content_inner2 table td.player,
+	.dolumar_content_inner2 table th.player {
+		width: auto;
+		min-width: 80px;
+	}
+	
+	.dolumar_content_inner2 table td.village-name,
+	.dolumar_content_inner2 table th.village-name {
+		width: auto;
+		min-width: 100px;
+	}
+	
+	.dolumar_content_inner2 table td.networth,
+	.dolumar_content_inner2 table th.networth {
+		width: auto;
+		min-width: 60px;
+	}
+	
+	/* Battle elements */
+	div.battle div.battlefield-slot,
+	div.battle div.challenge-slot {
+		width: 60px;
+		height: 120px;
+	}
+	
+	div.battle div.battlefield-decoration-left,
+	div.battle div.battlefield-decoration-right {
+		width: 12px;
+		height: 120px;
+	}
+	
+	/* News bar */
+	.newsbar div.newsbar-villagename {
+		width: 250px;
+		margin-left: -125px;
+		font-size: 11px;
+	}
+	
+	div.status {
+		left: 5px;
+		top: 50px;
+		font-size: 11px;
+	}
+	
+	/* Countdown */
+	div#countdown {
+		width: 90%;
+		margin-left: -45%;
+	}
+	
+	/* Forms */
+	form.searchbox input,
+	form.searchbox select {
+		width: 100%;
+		max-width: 200px;
+	}
+	
+	form.searchbox li {
+		width: 100%;
+		clear: both;
+	}
+	
+	div.clan textarea {
+		width: 100%;
+		max-width: 300px;
+	}
+	
+	/* Windows */
+	div.squads div.equipment select {
+		width: 100%;
+		max-width: 200px;
+	}
+}
+
+/* Small Devices (tablets, 481px - 767px) */
+@media screen and (min-width: 481px) and (max-width: 767px) {
+	#menu ul.left,
+	#menu ul.right {
+		font-size: 12px;
+	}
+	
+	#menu li div {
+		width: 140px;
+	}
+	
+	#menu ul.right li div {
+		margin-left: -110px;
+	}
+	
+	#menu li ul li,
+	#menu li ul li a {
+		width: 140px;
+	}
+	
+	.dialog {
+		max-width: 90vw !important;
+	}
+	
+	.dolumar_content_inner1 {
+		padding-left: 25px;
+		padding-right: 25px;
+	}
+	
+	/* Tables */
+	.dolumar_content_inner2 table td.date,
+	.dolumar_content_inner2 table th.date {
+		width: 100px;
+	}
+	
+	.dolumar_content_inner2 table td.player,
+	.dolumar_content_inner2 table th.player {
+		width: 100px;
+	}
+	
+	.dolumar_content_inner2 table td.village-name,
+	.dolumar_content_inner2 table th.village-name {
+		width: 120px;
+	}
+	
+	/* News bar */
+	.newsbar div.newsbar-villagename {
+		width: 300px;
+		margin-left: -150px;
+	}
+	
+	div.status {
+		left: 10px;
+		top: 50px;
+	}
+}
+
+/* Medium Devices (landscape tablets, 768px - 1023px) */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+	.dialog {
+		max-width: 85vw !important;
+	}
+	
+	.dolumar_content_inner1 {
+		padding-left: 30px;
+		padding-right: 30px;
+	}
+	
+	/* Tables keep reasonable widths */
+	.dolumar_content_inner2 table td.date,
+	.dolumar_content_inner2 table th.date {
+		width: 110px;
+	}
+	
+	.dolumar_content_inner2 table td.player,
+	.dolumar_content_inner2 table th.player {
+		width: 110px;
+	}
+	
+	.dolumar_content_inner2 table td.village-name,
+	.dolumar_content_inner2 table th.village-name {
+		width: 130px;
+	}
+}
+
+/* Large Devices (desktops, 1024px and up) */
+@media screen and (min-width: 1024px) {
+	/* Keep original desktop layout but allow flexibility */
+	.dialog {
+		max-width: 80vw;
+	}
+	
+	.dolumar_content_inner1 {
+		padding-left: 42px;
+		padding-right: 37px;
+	}
+	
+	/* Tables use original widths */
+	.dolumar_content_inner2 table td.date,
+	.dolumar_content_inner2 table th.date {
+		width: 110px;
+	}
+	
+	.dolumar_content_inner2 table td.player,
+	.dolumar_content_inner2 table th.player {
+		width: 110px;
+	}
+	
+	.dolumar_content_inner2 table td.village-name,
+	.dolumar_content_inner2 table th.village-name {
+		width: 135px;
+	}
+	
+	.dolumar_content_inner2 table td.networth,
+	.dolumar_content_inner2 table th.networth {
+		width: 75px;
+	}
+}
+
+/* Extra Large Devices (large desktops, 1440px and up) */
+@media screen and (min-width: 1440px) {
+	.dialog {
+		max-width: 70vw;
+	}
+	
+	#container {
+		max-width: 1920px;
+		margin: 0 auto;
+	}
+}
+
+/* Touch device improvements */
+@media (hover: none) and (pointer: coarse) {
+	/* Make touch targets larger */
+	#menu li {
+		padding: 2px;
+	}
+	
+	button,
+	input[type="submit"],
+	input[type="button"],
+	a.button {
+		min-height: 44px;
+		padding: 10px 15px;
+	}
+	
+	/* Larger dropdown items */
+	#menu li ul li {
+		padding: 8px;
+		min-height: 44px;
+	}
+	
+	/* Larger table rows */
+	.dolumar_content_inner2 table td,
+	.dolumar_content_inner2 table th {
+		padding: 8px 4px;
+	}
+}
+
+/* Landscape orientation adjustments */
+@media screen and (max-width: 767px) and (orientation: landscape) {
+	#menu .center {
+		width: 100px;
+		height: 35px;
+		margin-left: -50px;
+	}
+	
+	.dolumar_content_inner2 {
+		max-height: 70vh;
+	}
+	
+	.topmenu span.left,
+	.topmenu span.right {
+		display: none;
+	}
+}
+
+/* Print styles */
+@media print {
+	#menu,
+	.newsbar,
+	div.status,
+	.dolumar_close,
+	.dolumar_minimize,
+	.zoom-in,
+	.zoom-out {
+		display: none !important;
+	}
+	
+	.dialog {
+		max-width: 100% !important;
+		border: 1px solid black !important;
+	}
+	
+	.dolumar_content_inner2 {
+		overflow: visible !important;
+		max-height: none !important;
+	}
+}

@@ -11,4 +11,7 @@
 <!-- dolumar theme -->
 <link href="<?=STATIC_ABSOLUTE_URL?>dolumar/theme/dolumar.css?version=<?=$application_version?>" rel="stylesheet" type="text/css" />
 
-<meta name="viewport" content="user-scalable=no, initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, width=device-width, height=device-height" />
+<!-- responsive css -->
+<link href="<?=STATIC_ABSOLUTE_URL?>dolumar/css/responsive.css?version=<?=$application_version?>" rel="stylesheet" type="text/css" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
