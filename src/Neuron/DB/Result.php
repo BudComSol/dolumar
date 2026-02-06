@@ -50,6 +50,9 @@ class Neuron_DB_Result implements Iterator, ArrayAccess, Countable
 		// Fetch all rows into memory for PDO (since PDO doesn't support data_seek as easily)
 		$this->allRows = $result->fetchAll(PDO::FETCH_ASSOC);
 		
+		// Close cursor immediately since we've fetched all rows
+		$result->closeCursor();
+		
 		// Move to the first row
 		$this->rowId = 0;
 		$this->current = isset($this->allRows[0]) ? $this->allRows[0] : null;
@@ -134,7 +137,8 @@ class Neuron_DB_Result implements Iterator, ArrayAccess, Countable
 	// Destruct
 	public function __destruct ()
 	{
-		$this->result->closeCursor();
+		// Cursor was already closed in constructor after fetching all rows
+		// Nothing to do here
 	}
 }
 ?>

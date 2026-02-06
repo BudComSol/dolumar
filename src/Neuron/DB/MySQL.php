@@ -64,18 +64,22 @@ class Neuron_DB_MySQL extends Neuron_DB_Database
 	/**
 	 * Executes multiple SQL statements separated by semicolons.
 	 * 
-	 * Note: This is a simplified implementation that splits on semicolons.
-	 * It may not correctly handle semicolons within string literals or comments.
-	 * Use with caution and prefer individual query() calls for complex statements.
+	 * WARNING: This is a simplified implementation that splits on semicolons.
+	 * It WILL FAIL with semicolons in string literals, comments, or stored procedures.
+	 * Example of BROKEN query: INSERT INTO table VALUES ('text;with;semicolons')
+	 * 
+	 * This method is provided for backward compatibility only.
+	 * For reliable execution, use individual query() calls instead.
 	 * 
 	 * @param string $sSQL Multiple SQL statements separated by semicolons
+	 * @throws PDOException If any query fails
 	 */
 	public function multiQuery($sSQL)
 	{
 		$this->connect();
 		// PDO doesn't support multi_query in the same way as MySQLi
 		// Split queries by semicolon and execute them one by one
-		// Note: This simple split may fail with semicolons in string literals
+		// WARNING: This simple split WILL fail with semicolons in string literals!
 		$queries = array_filter(array_map('trim', explode(';', $sSQL)));
 		foreach ($queries as $query) {
 			if (!empty($query)) {
@@ -98,11 +102,6 @@ class Neuron_DB_MySQL extends Neuron_DB_Database
 
 		try {
 			$statement = $this->connection->query($sSQL);
-			
-			if (!$statement)
-			{
-				throw new Exception('MySQL Error: Query failed');
-			}
 
 			// Check if this is a SELECT query that returns results
 			if ($statement instanceof PDOStatement && $statement->columnCount() > 0)
