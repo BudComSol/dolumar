@@ -14,23 +14,18 @@
   },
 
   "platform": {
-    "php": "^7.1.0"
+    "php": "^8.1.0"
   },
 
   "repositories": [
     {
       "type": "vcs",
-      "url":  "git@github.com:CatLabInteractive/dolumar-engine.git"
+      "url":  "https://github.com/CatLabInteractive/dolumar-engine.git"
     },
 
     {
       "type": "vcs",
-      "url":  "git@github.com:CatLabInteractive/php-openid.git"
-    },
-
-    {
-      "type": "pear",
-      "url": "https://pear.php.net"
+      "url":  "https://github.com/CatLabInteractive/php-openid.git"
     }
   ],
 
@@ -48,6 +43,9 @@
   "prefer-stable" : true,
 
   "config": {
-    "secure-http": false
+    "allow-plugins": {
+      "composer/installers": true,
+      "pear/pear_installer": true
+    }
   }
 }
