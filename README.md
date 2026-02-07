@@ -4,26 +4,19 @@ Play now at http://www.dolumar.com/
 ## Requirements
 - PHP 8.1 or higher
 - MySQL/MariaDB database
-- Composer 2.x (see UPGRADE_PHP8.md for details)
-- Memcached extension
-- Required PHP extensions: bcmath, gd, mbstring, memcached
+- Memcached extension (optional, for improved caching)
+- Required PHP extensions: bcmath, gd, mbstring, pdo, pdo_mysql
 
 ## Setup
-Dolumar has a few requirements, listed in composer.json. It requires PHP 8.1+ and Composer 2.x.
-
-**Note**: Due to Composer 2.x no longer supporting PEAR repositories, special care must be taken during installation. Please see [UPGRADE_PHP8.md](UPGRADE_PHP8.md) for detailed instructions.
-
-Dolumar is a PHP web application that can be run on any server with the required dependencies.
+Dolumar is a standalone PHP web application that can be run on any server with the required dependencies. No external package manager (composer) is required - all dependencies are included in the repository.
 
 ## Local setup
-For a local (development) setup, make sure you have composer installed.
+For a local (development) setup, ensure you have PHP 8.1+ and a MySQL/MariaDB database.
 
-**Important**: See [UPGRADE_PHP8.md](UPGRADE_PHP8.md) for installation instructions due to PEAR package compatibility issues with Composer 2.x.
-
-Simply run `composer install` to install all dependencies (may require Composer 1.x workaround).
+Simply clone the repository and configure your web server to point to the `public/` directory.
 
 ## Set up SMTP server
-You need to set SMTP credentials in order to get the email validation working. You can use any SMTP server by setting the following environment variables:
+You need to set SMTP credentials in order to get the email validation working. You can use any SMTP server by setting the following environment variables in a `.env` file:
 
 * EMAIL_SMTP_SERVER: your SMTP server (e.g., smtp.example.com)
 * EMAIL_SMTP_SECURE: tls
@@ -32,7 +25,6 @@ You need to set SMTP credentials in order to get the email validation working. Y
 * EMAIL_SMTP_PASSWORD: your password
 
 Optionally, you can also set:
-* AIRBRAKE_TOKEN (airbrake api token, to gather errors)
 * SERVERLIST_URL (api that keeps track of all your servers)
 * CREDITS_GAME_TOKEN (your game token on the catlab credits framework)
 * CREDITS_PRIVATE_KEY (your private key to access catlab credits framework)
