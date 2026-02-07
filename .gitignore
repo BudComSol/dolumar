@@ -3,6 +3,5 @@
 /bootstrap/config.php
 /bootstrap/serverconfig.php
 /.env
-/composer.json
 /composer.lock
 /vendor/
