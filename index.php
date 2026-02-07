@@ -42,4 +42,5 @@ if (!chdir($publicDir)) {
 }
 
 // Include the actual index.php from the public directory
-require __DIR__ . '/public/index.php';
+// Using relative path since we've already changed to the public directory
+require 'index.php';
