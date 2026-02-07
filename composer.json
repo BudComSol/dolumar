@@ -1,0 +1,69 @@
+{
+    "name": "budcomsol/dolumar",
+    "description": "Dolumar - Browser-based strategy game. STANDALONE PROJECT: No 'composer install' needed, all dependencies are bundled.",
+    "type": "project",
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Thijs Van der Schaeghe",
+            "email": "thijs@catlab.eu"
+        }
+    ],
+    "require": {
+        "php": ">=8.1",
+        "ext-bcmath": "*",
+        "ext-gd": "*",
+        "ext-mbstring": "*",
+        "ext-pdo": "*",
+        "ext-pdo_mysql": "*"
+    },
+    "suggest": {
+        "ext-memcached": "For improved caching performance"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dolumar\\": "packages/dolumar-engine/src/",
+            "Neuron\\": "src/Neuron/",
+            "PHPMailer\\PHPMailer\\": "lib/PHPMailer/PHPMailer/"
+        },
+        "classmap": [
+            "src/",
+            "lib/",
+            "packages/",
+            "pear/"
+        ],
+        "files": [
+            "bootstrap/autoload.php"
+        ]
+    },
+    "config": {
+        "optimize-autoloader": false,
+        "preferred-install": "source"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "@php -r \"echo '\\n\\033[33mNOTE: This project does not require composer install!\\033[0m\\n';\""
+        ],
+        "post-update-cmd": [
+            "@php -r \"echo '\\n\\033[33mNOTE: This project does not use composer dependencies!\\033[0m\\n';\""
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "2.x-dev"
+        }
+    },
+    "_comment": [
+        "==========================================",
+        "IMPORTANT: This composer.json is provided for documentation and IDE support only.",
+        "Dolumar is a STANDALONE project and does NOT require 'composer install'.",
+        "All dependencies are bundled in the repository:",
+        "  - lib/PHPMailer/ - Email library",
+        "  - lib/openid/ - OpenID authentication",
+        "  - packages/dolumar-engine/ - Game engine",
+        "  - pear/ - PEAR libraries",
+        "The custom autoloader is at: bootstrap/autoload.php",
+        "See DEPENDENCIES.md for complete documentation.",
+        "=========================================="
+    ]
+}

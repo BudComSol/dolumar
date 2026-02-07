@@ -8,7 +8,9 @@ Play now at http://www.dolumar.com/
 - Required PHP extensions: bcmath, gd, mbstring, pdo, pdo_mysql
 
 ## Quick Setup
-Dolumar is a standalone PHP web application that can be run on any server with the required dependencies. No external package manager (composer) is required - all dependencies are included in the repository.
+Dolumar is a standalone PHP web application that can be run on any server with the required dependencies. **No external package manager (Composer) is required** - all dependencies are included in the repository.
+
+> **⚠️ Important:** This project does NOT use Composer or a `vendor/` folder. Dependencies are located in `lib/`, `packages/`, and `pear/` directories. The autoloader is at `bootstrap/autoload.php`. See [DEPENDENCIES.md](DEPENDENCIES.md) for details.
 
 ```bash
 git clone https://github.com/BudComSol/dolumar.git
