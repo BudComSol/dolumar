@@ -41,7 +41,7 @@ class Neuron_Core_Memcache
 	
 	private function __construct ()
 	{
-		if (defined ('MEMCACHE_SERVERS'))
+		if (defined ('MEMCACHE_SERVERS') && class_exists('Memcached'))
 		{
 			try
 			{
