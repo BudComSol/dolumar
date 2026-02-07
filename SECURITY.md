@@ -20,24 +20,26 @@ This project has been updated to use PHPMailer v6.12.0 (or later), which resolve
 
 ### What Changed
 
-The `catlabinteractive/dolumar-engine` dependency has been updated to use PHPMailer v6.x with the following changes:
+The application has been made completely standalone without external dependency managers:
 
-1. **Updated PHPMailer**: Changed from `~5.2` to `^6.9` in dolumar-engine's composer.json
+1. **Updated PHPMailer**: Now bundled directly in `lib/PHPMailer/PHPMailer/` (v6.9.1)
 2. **Code Modernization**: Updated email sending code to use PHPMailer v6 namespaced classes and methods
-3. **Removed Legacy Dependencies**: Removed MDB2 dependencies in favor of PDO (already implemented in main codebase)
-4. **Local Package**: dolumar-engine is now included as a local package in `packages/dolumar-engine` with all necessary updates
+3. **Removed Composer**: All dependencies are now included directly in the repository
+4. **Custom Autoloader**: Implemented custom autoloader to replace Composer's autoloader
+5. **Simple Environment Loader**: Created lightweight .env file loader
 
 ### Implementation Details
 
-The dolumar-engine package now:
+The application now:
 - Uses `\PHPMailer\PHPMailer\PHPMailer` with proper namespace imports
 - Employs modern PHPMailer v6 method names (`isSMTP()`, `addAddress()`, `setFrom()`)
 - Handles exceptions properly with `\PHPMailer\PHPMailer\Exception`
 - Maintains backward compatibility with existing email configuration
+- Includes all dependencies in the `lib/` directory
 
 ## Current Security Posture
 
-✅ **No Known Security Vulnerabilities**: As of the last update (2026-02-06), composer audit reports no security vulnerabilities.
+✅ **No Known Security Vulnerabilities**: The bundled PHPMailer v6.9.1 has no known security vulnerabilities.
 
 ## Best Practices
 
@@ -59,8 +61,8 @@ While the security vulnerabilities have been addressed, continue to follow these
    - Regularly review email logs for suspicious activity
 
 4. **Regular Updates**
-   - Keep PHPMailer updated to the latest version
-   - Run `composer audit` regularly to check for new vulnerabilities
+   - Monitor [PHPMailer GitHub releases](https://github.com/PHPMailer/PHPMailer/releases) for updates
+   - Update bundled libraries when security patches are released
    - Subscribe to security advisories for dependencies
 
 ## Reporting Security Issues
@@ -70,9 +72,8 @@ If you discover a security vulnerability in this codebase, please report it by o
 ## Additional Resources
 
 - [PHPMailer Security Advisories](https://github.com/PHPMailer/PHPMailer/security/advisories)
-- [Composer Audit Documentation](https://getcomposer.org/doc/03-cli.md#audit)
 - [UPGRADE_PHP8.md](UPGRADE_PHP8.md) - Full upgrade documentation
 
 ## Last Updated
 
-This security notice was last updated on 2026-02-06 when the PHP 8.x compatibility updates were made.
+This security notice was last updated on 2026-02-07 when composer dependencies were removed and the application was made standalone.
