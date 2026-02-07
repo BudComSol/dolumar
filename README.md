@@ -229,7 +229,7 @@ Create log directories if needed:
 ```bash
 sudo mkdir -p /var/log
 sudo touch /var/log/dolumar-constantly.log /var/log/dolumar-daily.log
-sudo chown www-data:www-data /var/log/dolumar-*.log
+sudo chown www-data:www-data /var/log/dolumar-constantly.log /var/log/dolumar-daily.log
 ```
 
 ### 6. File Permissions
@@ -257,11 +257,11 @@ sudo chmod 755 /tmp/dolumar
 
 ### 7. First-Time Setup
 
-1. Access your server in a web browser: `http://dolumar.example.com`
-2. If a setup page exists, follow the on-screen instructions
-3. Otherwise, you can manually access `http://dolumar.example.com/setup.php` if available
-4. Create your first admin user account
-5. Test email functionality by registering a new user
+1. Access the setup script in a web browser: `http://dolumar.example.com/setup.php`
+   - This will automatically create the database tables from `dump/dump.sql` if they don't exist
+2. After setup completes, access the main application: `http://dolumar.example.com`
+3. Register your first user account
+4. Test email functionality by completing the email verification process
 
 ### 8. SSL/HTTPS Configuration (Recommended for Production)
 
@@ -300,7 +300,7 @@ sudo systemctl enable memcached
 
 #### CatLab Credits Setup
 
-If you want to offer paid features on your server, you will need to setup an account on the CatLab credits framework. Contact us at support@catlab.be in order to get you up and running, or you can write your own payment gateway.
+If you want to offer paid features on your server, you will need to set up an account on the CatLab credits framework. Contact us at support@catlab.be in order to get you up and running, or you can write your own payment gateway.
 
 Once configured, add to `.env`:
 ```
