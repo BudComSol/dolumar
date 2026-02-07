@@ -24,12 +24,13 @@
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 
-$loader = require_once __DIR__ . '/../vendor/autoload.php';
+// Load custom autoloader
+require_once __DIR__ . '/autoload.php';
 
-// phpdotenv v5 usage
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+// Load environment variables from .env file
+require_once __DIR__ . '/env_loader.php';
 if (file_exists(__DIR__ . '/../.env')) {
-    $dotenv->safeLoad();
+    loadEnvFile(__DIR__ . '/../.env');
 }
 
 define ('BASE_PATH', dirname(dirname(__FILE__)).'/');
@@ -69,27 +70,8 @@ else {
 	include BASE_PATH . 'bootstrap/serverconfig-default.php';
 }
 
-if (defined ('AIRBRAKE_TOKEN') && AIRBRAKE_TOKEN) {
-
-    $options = array(
-        'projectId' => AIRBRAKE_TOKEN,
-        'projectKey' => defined('AIRBRAKE_PROJECT_ID') ? AIRBRAKE_PROJECT_ID : AIRBRAKE_TOKEN
-    );
-
-    if (defined('AIRBRAKE_HOST')) {
-        $options['host'] = AIRBRAKE_HOST;
-    }
-
-    // Create new Notifier instance.
-    $notifier = new Airbrake\Notifier($options);
-
-    // Set global notifier instance.
-    Airbrake\Instance::set($notifier);
-
-    // Register error and exception handlers.
-    $handler = new Airbrake\ErrorHandler($notifier);
-    $handler->register();
-}
+// Airbrake support removed to eliminate external dependencies
+// If error tracking is needed, implement a custom solution
 
 if (!defined ('SPEED_FACTOR'))
 	define ('SPEED_FACTOR', 1);
