@@ -32,7 +32,14 @@
  */
 
 // Change to public directory for proper context
-chdir(__DIR__ . '/public');
+$publicDir = __DIR__ . '/public';
+if (!is_dir($publicDir)) {
+    die('ERROR: The public/ directory was not found. Please ensure the game is properly installed.');
+}
+
+if (!chdir($publicDir)) {
+    die('ERROR: Failed to change to the public/ directory. Please check directory permissions.');
+}
 
 // Include the actual index.php from the public directory
 require __DIR__ . '/public/index.php';
