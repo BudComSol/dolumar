@@ -54,10 +54,13 @@ dolumar/
 ├── packages/           # Local packages
 │   └── dolumar-engine/ # Game engine
 ├── public/            # Web-accessible directory
+│   ├── .htaccess      # Apache rewrite rules (important!)
 │   └── index.php      # Main entry point
 ├── src/               # Application source code
 └── .env               # Environment configuration (create from .env.example)
 ```
+
+**Note:** The `.htaccess` file in the `public/` directory contains URL rewrite rules essential for Apache servers. For Nginx, equivalent rules are configured in the server block (see README.md).
 
 ## Updating Libraries
 

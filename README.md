@@ -153,6 +153,14 @@ sudo a2enmod rewrite
 sudo systemctl restart apache2
 ```
 
+**Important:** The repository includes `.htaccess` files that are essential for proper functioning:
+- `public/.htaccess` - Main rewrite rules for URL routing (routes requests to `dispatch.php`)
+- `packages/dolumar-engine/assets/.htaccess` - Allows public access to asset files
+- `packages/dolumar-engine/src/.htaccess` - Denies direct access to source code for security
+- `packages/dolumar-engine/src/Neuron/GameServer/scripts/.htaccess` - Denies direct access to scripts for security
+
+**Note:** For Apache to use these `.htaccess` files, you must set `AllowOverride All` in your virtual host configuration (see example below).
+
 **Example Virtual Host** (`/etc/apache2/sites-available/dolumar.conf`):
 ```apache
 <VirtualHost *:80>
@@ -336,9 +344,11 @@ CREDITS_PRIVATE_KEY=/path/to/private_key.pem
 - Verify file permissions on cron scripts
 
 #### Rewrite Rules Not Working
-- Apache: Ensure `mod_rewrite` is enabled
-- Verify `.htaccess` file exists in `public/` directory
-- Check AllowOverride directive in Apache configuration
+- Apache: Ensure `mod_rewrite` is enabled with `sudo a2enmod rewrite`
+- Verify the main `.htaccess` file exists in `public/` directory
+- The `.htaccess` file should contain URL rewrite rules that route requests to `dispatch.php`
+- Check that `AllowOverride All` is set in your Apache virtual host configuration
+- Test with: `ls -la public/.htaccess` to confirm the file exists and is readable
 
 #### Cache Issues
 - Clear cache directory: `rm -rf /tmp/dolumar/*`
